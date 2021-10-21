@@ -6,14 +6,16 @@
 <script>
 import HelloMyVue from './components/HelloMyVue.vue'
 
-// import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloMyVue
+    HelloMyVue,
+    HelloWorld
   }
 }
+
 </script>
 
 <style>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+</head>
+<body>
+
+<!--<div id="div_02" class="div02">-->
+<!--    &lt;!&ndash;自定义元素&ndash;&gt;-->
+<!--    <btn_click name="btn01"></btn_click>-->
+<!--    <br>-->
+<!--    <btn_click name="btn02"></btn_click>-->
+<!--</div>-->
+<div id="for_div" class="fordiv" >
+    <div :style="{ fontSize: mFontSize + 'em' }">
+        <for_demo
+                v-for="data in dataList"
+                v-bind:id="data.id"
+                v-bind:name="data.name"
+                @enlarge-text="mFontSize+=0.1"
+        ></for_demo>
+
+    </div>
+</div>
+<script>
+  const AppData = {
+    data () {
+      return {
+        dataList: [
+          {
+            id: '0',
+            name: 'name01'
+          },
+          {
+            id: '1',
+            name: 'name02'
+          },
+          {
+            id: '2',
+            name: 'name03'
+          },
+          {
+            id: '4',
+            name: 'name04'
+          }
+        ],
+        mFontSize: 1
+      }
+    }
+  }
+
+  const vue02App = Vue.createApp(AppData)
+
+  // //<!--自定义元素-->
+  // vue02App.component('btn_click', {
+  //   data () {
+  //     return {
+  //       count: 0
+  //     }
+  //   },
+  //   //自定义属性
+  //   props: ['name'],
+  //   template:
+  //     '<button @click="count++">{{name}}被点击了:{{count}}次 </button>',
+  //   // template: '<p>按钮点击{{count}}词</p>'
+  // })
+
+  //自定义元素与v-bind v-for
+  vue02App.component('for_demo', {
+    props: ['name', 'id'],
+    template: '<div class="for_demo"> <h4>id:{{id}}--名字:{{name}}</h4> <button @click="$emit(\'enlargeText\')">Enlarge text </button></div>'
+  })
+
+  vue02App.mount('#for_div')
+</script>
+
+</body>
+</html>

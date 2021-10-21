@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue01</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+    <!--    <script type="text/javascript" src="vue01.js"></script>-->
+</head>
+<body>
+
+<div id="div_01" class="div01">
+    {{ myText }}
+</div>
+
+
+<script>
+  const vue01 = {
+    data () {
+      return {
+        myText: 'this is my text p1'
+      }
+    }
+  }
+  Vue.createApp(vue01).mount('#div_01')
+</script>
+
+
+</body>
+</html>
+
