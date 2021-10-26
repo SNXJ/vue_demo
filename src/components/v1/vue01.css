@@ -7,4 +7,6 @@
     margin-bottom: 40px;
     user-select: none;
     overflow-x: auto;
+    align-content: center;
+    align-self: center;
 }

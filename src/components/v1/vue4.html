@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>监听属性watcher</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+</head>
+<body>
+<!--<div id="div4" class="div_4">-->
+<!--    <p>计数器结果：{{ counter }}</p>-->
+<!--    <button @click="counter++">加一</button>-->
+<!--</div>-->
+<!--<script>-->
+
+<!--  const app4 = ({-->
+<!--    data () {-->
+<!--      return {-->
+<!--        counter: 0-->
+<!--      }-->
+
+<!--    }-->
+<!--  })-->
+<!--  var vm = Vue.createApp(app4).mount('#div4')-->
+<!--  vm.$watch('counter', function (nstr, ostr) {-->
+<!--    alert('新的值是：' + nstr + ' <-&#45;&#45;&ndash;&gt; 旧的值是：' + ostr)-->
+<!--  })-->
+
+<div id="div4-1" class="div01">
+    千米<input type="text" v-model="mKMS"/>
+
+    <br>
+    米<input type="text" v-model="mMS"/>
+    <p id="desc"></p>
+
+</div>
+
+<script>
+  const app41 = {
+    data () {
+      return {
+        mKMS: 0,
+        mMS: 0
+      }
+    },
+    watch: {
+      mKMS: function (val) {
+        this.mKMS = val
+        this.mMS = this.mKMS * 1000
+      },
+
+      mMS: function (val) {
+        this.mKMS = val / 1000
+        this.mMS = val
+      }
+
+    }
+
+  }
+
+  var vm = Vue.createApp(app41).mount('#div4-1')
+  vm.$watch('mKMS', function (newval, oldval) {
+
+    document.getElementById('desc').innerHTML = '修改后的值:' + newval + '  修改前的值:' + oldval
+
+  })
+
+</script>
+
+</body>
+</html>

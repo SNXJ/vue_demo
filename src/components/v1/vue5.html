@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>异步加载中使用 watch</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!--axios库-->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div id="div5" class="div01">
+    问题：
+    <input v-model="question"></input>
+    <p>{{ answer }}</p>
+
+</div>
+
+<script>
+
+  const appqa = {
+    data () {
+      return {
+        question: '',
+        answer: '默认结果'
+      }
+    }
+    ,
+    watch: {
+      question (nq, oq) {
+        if (nq.indexOf('？') > -1) {
+          return this.getAnswer()
+        } else {
+          return this.getError()
+        }
+      }
+    }
+    ,
+    methods: {
+      getError: function () {
+        this.answer = '加载中...'
+        this.answer = '请以？结尾'
+      },
+      getAnswer: function () {
+        this.answer = '加载中...'
+        axios.get('https://yesno.wtf/api').then(resp => {
+          this.answer = resp.data.answer
+        }).catch(err => {
+          this.answer = 'api错误：' + err
+        })
+      }
+
+    }
+
+  }
+  Vue.createApp(appqa).mount('#div5')
+
+</script>
+
+</body>
+</html>

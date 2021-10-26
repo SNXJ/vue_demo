@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!--    &lt;!&ndash;axios库&ndash;&gt;-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>-->
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+        }
+
+        .t1 {
+            background: red;
+        }
+
+        .t2 {
+            background: green;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<div id="div7">
+    <button @click="greet" class="div01">按钮1</button>
+    <!--   内联 JavaScript  多个用,隔开-->
+    <button @click="say('hi'),say('hello')" class="div01">按钮2</button>
+
+
+</div>
+
+<script>
+
+  const appClick = {
+    data () {
+      return {
+        name: 'vue3'
+      }
+    },
+    methods: {
+      greet (event) {
+        alert('hello:' + this.name)
+        if (event) {
+          alert(event.target.tagName)
+        }
+      },
+      say (msg) {
+        alert(msg + '!' + this.name)
+      }
+
+    }
+
+  }
+  Vue.createApp(appClick).mount('#div7')
+
+</script>
+
+</body>
+</html>

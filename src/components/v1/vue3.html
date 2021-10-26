@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性和</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+</head>
+<body>
+<div id="div3" class="div_3">
+    <!--    <p>原始：{{ msg }}</p>-->
+    <!--    <p>反转：{{ reverseMsg }}</p>-->
+</div>
+<script>
+  const app3 = {
+    data () {
+      return {
+        name: '网站',
+        url: 'www.'
+      }
+    },
+
+    computed: {
+      site: {
+        get: function () {
+          return this.name + ' ' + this.url
+        },
+        set: function (newValue) {
+          var names = newValue.split(' ')
+          this.name = names[0]
+          this.url = names[1]
+        }
+      }
+    }
+
+  }
+  vm = Vue.createApp(app3).mount('#div3')
+  // vm.site = '网站名字 www.wangzhanurl.com'
+  document.write('name:' + vm.name)
+  document.write('<br>')
+  document.write('url:' + vm.url)
+
+  document.write('<br>-----更新后:------<br>')
+
+  vm.site = '网站名字 www.wangzhanurl.com'
+  document.write('name:' + vm.name)
+  document.write('<br>')
+  document.write('url:' + vm.url)
+
+  // const app3 = {
+  //   data () {
+  //     return {
+  //       msg: 'myVue3Demo'
+  //     }
+  //   },
+  //   computed: {
+  //     reverseMsg: function () {
+  //       return this.msg.split('').reverse().join('')
+  //     }
+  //   }
+  // }
+
+  // const app3 = Vue.createApp({
+  //   data () {
+  //     return {
+  //       msg: 'hellomsg3'
+  //     }
+  //   },
+  //   computed: {
+  //     reverseMsg: function () {
+  //       return this.msg.split('').reverse().join('')
+  //     }
+  //   }
+  //
+  // })
+  //
+  // app3.mount('#div3')
+
+
+</script>
+
+</body>
+</html>

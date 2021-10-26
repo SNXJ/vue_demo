@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>样式绑定</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!--    &lt;!&ndash;axios库&ndash;&gt;-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>-->
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+        }
+
+        .t1 {
+            background: red;
+        }
+
+        .t2 {
+            background: green;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<div id="div6">
+    <!--数组和三元表达式-->
+    <div class="demo" :class="[test1,isActive2 ? test2 : '']"></div>
+    <!--内联样式 和 绑定样式对象 :style -->
+    <div class="demo" :style="styleObject"></div>
+
+
+</div>
+
+<script>
+
+  const appstyle = {
+    data () {
+      return {
+        isActive2: false,
+        test1: 't1',
+        test2: 't2',
+        styleObject: {
+          background: 'blue'
+        }
+      }
+    }
+
+  }
+  Vue.createApp(appstyle).mount('#div6')
+
+</script>
+
+</body>
+</html>
