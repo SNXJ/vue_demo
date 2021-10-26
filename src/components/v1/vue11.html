@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>vue混入</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div id="div11">
+</div>
+
+<script>
+
+  const app = Vue.createApp({
+    myOption: '混入demo!'
+  })
+
+  // 为自定义的选项 'myOption' 注入一个处理器。
+  app.mixin({
+    created () {
+      const myOption = this.$options.myOption
+      if (myOption) {
+        document.write(myOption)
+      }
+    }
+  })
+
+  app.mount('#div11')
+
+</script>
+
+</body>
+</html>

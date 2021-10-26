@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>路由router</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <!--    &lt;!&ndash;axios库&ndash;&gt;-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>-->
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div id="div10">
+    <!--    <p>路由</p>-->
+    <p>
+        <router-link to="/home" tag="li" event = "mouseover" class="demo" active-class="t1">首页</router-link>
+        <router-link to="/mine" tag="li" class="demo" active-class="t1">我的</router-link>
+        <router-view></router-view>
+    </p>
+</div>
+
+<script>
+  const Home = { template: '<div>这是首页</div>' }
+  const Mine = { template: '<div>这是我的</div>' }
+  const routes = [
+    {
+      path: '/home',
+      component: Home
+    }
+    , {
+      path: '/mine',
+      component: Mine
+    }
+  ]
+  // const router = VueRouter.createRouter({
+  //   // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+  //   history: VueRouter.createWebHashHistory(),
+  //   routes: routes,
+  // })
+  const router = VueRouter.createRouter({
+    history: VueRouter.createWebHashHistory(),
+    routes
+  })
+  const app10 = Vue.createApp({})
+  app10.use(router)
+  app10.mount('#div10')
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!--    &lt;!&ndash;axios库&ndash;&gt;-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>-->
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div id="div9">
+    <p>页面载入时input 元素自动获取焦点：</p>
+    <input v-focus>
+
+</div>
+
+<script>
+
+  const app9 = {
+    data () {
+      return {
+
+      }
+    }
+    ,
+    directives: {
+      focus: {
+        mounted (el) {
+          el.focus()
+        }
+      }
+    }
+  }
+  // app9.directive('focus', {
+  //   mounted (el) {
+  //     el.focus()
+  //   }
+  // })
+  Vue.createApp(app9).mount('#div9')
+
+</script>
+
+</body>
+</html>

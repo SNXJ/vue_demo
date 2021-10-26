@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!--    &lt;!&ndash;axios库&ndash;&gt;-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>-->
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+        }
+
+        .t1 {
+            background: red;
+        }
+
+        .t2 {
+            background: green;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<div id="div8">
+    单选：<input type="checkbox" value="单选" v-model="checked"></input>
+    <p>是否选中：{{ checked }}</p>
+
+    <p>复选框</p>
+    <input type="checkbox" id="value01" value="value01" v-model="checkedNames">
+    <label for="value01">value01</label>
+
+    <input type="checkbox" id="value02" value="value02" v-model="checkedNames">
+    <label for="value02">value02</label>
+
+    <input type="checkbox" id="value03" value="value03" v-model="checkedNames">
+    <label for="value03">value03</label>
+    <p>复选框：{{ checkedNames }}</p>
+
+
+    <p>单选按钮</p>
+    <input type="radio" id="radio01" value="radio01" v-model="radioChecked">
+    <label for="radio01">radio01</label>
+    <br>
+    <input type="radio" id="radio02" value="radio02" v-model="radioChecked">
+    <label for="radio02">radio02</label>
+    <p>单选结果：{{ radioChecked }}</p>
+
+
+    <p>select列表(multiple 多选)</p>
+    <select v-model="selected" multiple>
+        <option value="">请选择</option>
+        <option value="小米">小米</option>
+        <option value="华为">华为</option>
+        <option value="oppo">oppo</option>
+        <option value="vivo">vivo</option>
+    </select>
+    <p>选择的值是：{{ selected }}</p>
+
+
+    <p>select列表(for 循环)</p>
+    <select v-model="optionSelected">
+        <option v-for="option in options" :value="option.value">{{ option.name }}</option>
+    </select>
+    <p>选择的值是：{{ optionSelected }}</p>
+
+    <p>___________________________________</p>
+    <p>值绑定 选中时 picked=value</p>
+    picked-a <input type="radio" v-model="picked" value="a"/>
+    picked-b <input type="radio" v-model="picked" value="b"/>
+    <p>picked选择的值是：{{ picked }}</p>
+    toggle <input type="checkbox" v-model="toggle" true-value="yes" false-value="no"/>
+    <p>toggle选择的值是：{{ toggle }}</p>
+</div>
+
+<script>
+
+  const appform = {
+    data () {
+      return {
+        name: 'vue3',
+        checked: true,
+        checkedNames: [],
+        radioChecked: 'radio01',
+        selected: '',
+        optionSelected: 'options01',
+        options: [
+          {
+            name: 'options01',
+            value: 'options01'
+          },
+          {
+            name: 'options02',
+            value: 'options02'
+          },
+          {
+            name: 'options03',
+            value: 'options03'
+          },
+        ],
+        picked: 'a',
+        toggle: 'yes'
+
+      }
+    },
+
+  }
+  Vue.createApp(appform).mount('#div8')
+
+</script>
+
+</body>
+</html>
