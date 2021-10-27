@@ -15,22 +15,25 @@
 <div id="div12" class="div01">
     <p @click="changeText" class="demo">{{ text }}</p>
     <p @click="changeText2" class="demo">{{ text2 }}</p>
+    <br>
+    <ul>
+        <li v-for="img in imgUrls" :key="img.id">
+            <img :src="img.avatar_url">
+            <h4 >{{img.login}}</h4>
+        </li>
+
+    </ul>
 </div>
 
 <script>
-  const instance = axios.create({
-    baseUrl: 'https://www.runoob.com/try/ajax',
-   // `withCredentials` 表示跨域请求时是否需要使用凭证
-    withCredentials: false, // 默认的
-  })
-  // 在实例已创建后修改默认值
-  // instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-  // instance.get()
+
+
   const appaxios = Vue.createApp({
     data () {
       return {
         text: '这是 axio get测试',
-        text2: '这是 axio post测试'
+        text2: '这是 axio post测试',
+        imgUrls: []
       }
     }
     ,
@@ -40,8 +43,11 @@
     methods: {
       changeText () {
         this.text = '加载中...'
-        instance.get('/json_demo.json')
-          .then(response => (this.text = response))
+        axios.get('https://api.github.com/users')
+          .then(response => (
+            this.text = '请求完成',
+              this.imgUrls = response.data
+          ))
           .catch(function (error) {
             // text = 'API异常：' + error
             // console.log(error)
@@ -51,8 +57,7 @@
 
       changeText2 () {
         this.text2 = '加载中...'
-        axios
-          .post('https://www.runoob.com/try/ajax/demo_axios_post.php')
+        axios.post('https://www.runoob.com/try/ajax/demo_axios_post.php')
           .then(response => (this.text2 = response))
           .catch(function (error) { // 请求失败处理
             // console.log(error)

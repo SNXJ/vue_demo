@@ -1,18 +1,36 @@
 <template>
-<!--  <img alt="Vue logo" src="./assets/logo.png">-->
-  <HelloMyVue msg="Welcome to demo"/>
+  <button @click="testAxios">github排行榜</button>
+  <ul>
+    <li v-for="data in imgLists" :key="data.id">
+      <h3>{{ data.login }}</h3>
+      <img :src="data.avatar_url"/>
+    </li>
+  </ul>
 </template>
 
 <script>
-import HelloMyVue from './components/HelloMyVue.vue'
-
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
-  components: {
-    HelloMyVue,
-    HelloWorld
+  components: {},
+  data: function () {
+    return {
+      imgLists: []
+    }
+
+  },
+  methods: {
+    testAxios () {
+      axios.get('https://api.github.com/users')
+        .then(response => {
+          this.imgLists = response.data
+          console.log('请求成功')
+          // }
+        }).catch(err => {
+        alert('请求失败')
+      })
+    }
   }
 }
 

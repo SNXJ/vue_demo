@@ -11,8 +11,14 @@ module.exports = {
     parser: 'babel-eslint'
   },
   rules: {
+
+    "space-before-function-paren": 0,
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    "vue/no-unused-components":"off"
-  }
+    "vue/no-unused-components":"off",
+    'generator-star-spacing': 'off',
+    "no-tabs":"off",
+    "no-unused-vars":"off"
+  },
+
 }
