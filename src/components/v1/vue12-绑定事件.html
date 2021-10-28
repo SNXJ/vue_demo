@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>vue双向绑定</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div id="div12">
+    <input v-model="inputVal"></input>
+    <br>
+    <button @click="addData" class="demo">添加数据</button>
+    <ul>
+        <!--        <li v-for="(data,index) of dataLists">-->
+        <!--            {{ index }}===={{ data }}-->
+        <!--        </li> -->
+        <my-view v-for="(data,index) of dataLists"
+                 :item="data"
+                 :index="index"
+        >
+        </my-view>
+
+    </ul>
+</div>
+
+<script>
+
+  const app = Vue.createApp({
+    data () {
+      return {
+        dataLists: [],
+        inputVal: '请添加'
+      }
+    },
+    methods: {
+      addData () {
+        this.dataLists.push(this.inputVal),
+          this.inputVal = ''
+      }
+    }
+
+  })
+  /*动态组建1*/
+  //动态组建2
+
+  app.component('my-view', {
+    props: ['index', 'item'],//传递参数
+    template: '<li>{{index}}====={{item}}</li>'
+
+  })
+
+  app.mount('#div12')
+
+</script>
+
+</body>
+</html>

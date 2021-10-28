@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定事件-冒泡</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <link type="text/css" href="vue01.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div id="div13">
+    <!--
+    修饰符
+    默认的冒泡从下到上
+        stop 加在内部子空间 自身响应不再向上传递
+        self 加在外层（只有点击到自己的区域的时候才响应 不往下传递）
+        prevent：阻止默认行为 例如from的submit
+        capture:从上到下
+        once：执行一次
+        passive：解决滚动性能
+    -->
+
+    <div @click.once="outsideClick" class="demo t1">
+        <button @click="insideClick">里面{{ count }}</button>
+        外面
+    </div>
+</div>
+
+<script>
+
+  const app = Vue.createApp({
+    data () {
+      return {
+        count: 0
+      }
+    },
+    methods: {
+      insideClick () {
+        this.count++
+        alert('这是里面')
+      },
+      outsideClick () {
+        alert('这是外面')
+      }
+    }
+
+  })
+  /*动态组建1*/
+  //动态组建2
+
+  app.component('my-view', {
+    props: ['index', 'item'],//传递参数
+    template: '<li>{{index}}====={{item}}</li>'
+
+  })
+
+  app.mount('#div13')
+
+</script>
+
+</body>
+</html>
