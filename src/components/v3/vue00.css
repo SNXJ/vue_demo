@@ -1,0 +1,95 @@
+.div01 {
+    font-family: sans-serif;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 20px 30px;
+    margin-top: 1em;
+    margin-bottom: 40px;
+    user-select: none;
+    overflow-x: auto;
+    align-content: center;
+    align-self: center;
+}
+
+.demo {
+    width: 100px;
+    height: 100px;
+}
+
+.t1 {
+    background: red;
+}
+
+.t2 {
+    background: green;
+}
+
+.transition {
+    transition: 3s background-color ease;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+
+.animation {
+    animation: left2right 3s;
+}
+
+/*固定写法*/
+.v-enter-active {
+    animation: comein 2s;
+}
+
+.v-leave-active {
+    animation: comeout 2s;
+}
+
+@keyframes left2right {
+    0% {
+        transform: translateX(0px);
+    }
+    25% {
+        transform: translateX(20px);
+    }
+    50% {
+        transform: translateX(50px);
+    }
+    75% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes comein {
+    0% {
+        transform: translateX(0px)
+    }
+    100% {
+        transform: translateX(100px)
+    }
+}
+
+
+@keyframes comeout {
+    0% {
+        transform: translateX(100px)
+    }
+    100% {
+        transform: translateX(0px)
+    }
+}
+
+
+

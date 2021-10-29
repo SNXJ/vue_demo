@@ -1,0 +1,78 @@
+.div01 {
+    font-family: sans-serif;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 20px 30px;
+    margin-top: 1em;
+    margin-bottom: 40px;
+    user-select: none;
+    overflow-x: auto;
+    align-content: center;
+    align-self: center;
+}
+
+.demo {
+    width: 100px;
+    height: 100px;
+}
+
+.t1 {
+    background: red;
+}
+
+.t2 {
+    background: green;
+}
+
+.transition {
+    transition: 3s background-color ease;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+
+.animation {
+    animation: left2right 3s;
+}
+
+/*固定写法*/
+/*.v-enter-from , .v-leave-to{
+    opacity: 0;
+}
+.v-enter-to , .v-leave-from{
+    opacity: 1;
+}
+.v-enter-active , .v-leave-active{
+    transition: opacity 3s ease-out;
+}*/
+.v-enter-from{
+    opacity: 0;
+}
+.v-enter-to{
+    opacity: 1;
+}
+.v-enter-active{
+    transition: opacity 3s ease-out;
+}
+
+.v-leave-active{
+    transition: opacity 3s ease-out;
+}
+.v-leave-from{
+    opacity: 1;
+}
+.v-leave-to{
+    opacity: 0;
+}
+
+

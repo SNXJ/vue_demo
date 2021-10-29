@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue3 动画 效果</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue00.css" rel="stylesheet">
+    <!--    <script type="text/javascript" src="vue01.js"></script>-->
+</head>
+<body>
+
+<div id="div_01">
+    <!--    <button :class="css02" v-if="css02.isShow">显示隐藏</button>-->
+    <br>
+    <!--    <animation-view :class="this.isAnimation.animation">动画</animation-view>-->
+    <div :class="isAnimation">平移动画</div>
+    <br>
+    <animation-view :class="isAnimation"></animation-view>
+    <br>
+    <button :class="css01">颜色渐变</button>
+    <br>
+    <transition>
+        <button class="demo blue" :class="css03" v-if="css03.isShow">进入退出动画</button>
+    </transition>
+
+    <br>
+    <button class="demo t2" @click="btnClick">点我</button>
+</div>
+
+
+<script>
+  const app = Vue.createApp({
+    data () {
+      return {
+        isAnimation: {
+          animation: false
+        },
+        css01: {
+          demo: true,
+          transition: true,
+          red: true,
+          blue: false
+        },
+        css02: {
+          demo: true,
+          yellow: true,
+          isShow: true
+        },
+        css03: {
+          isShow: false
+        }
+
+      }
+    },
+    methods: {
+      btnClick () {
+        this.isAnimation.animation = !this.isAnimation.animation
+        // alert('值：' + this.isAnimation.animation)
+        this.css01.blue = !this.css01.blue
+        this.css01.red = !this.css01.red
+        this.css02.isShow = !this.css02.isShow
+        this.css03.isShow = !this.css03.isShow
+
+      }
+
+    }
+  })
+
+  app.component('animation-view', {
+    template: '<div >自定义动画view</div>'
+  })
+  app.mount('#div_01')
+</script>
+
+
+</body>
+</html>
+
