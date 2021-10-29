@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue4-异步组件</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue00.css" rel="stylesheet">
+    <!--    <script type="text/javascript" src="vue01.js"></script>-->
+</head>
+<body>
+
+<div id="div_01" class="div01">
+    <ul>
+
+        <async-view></async-view>
+        <br>
+        <button class="demo t1" @click="btnSwitch">切换</button>
+        <!--        </li>-->
+    </ul>
+    <br>
+</div>
+
+
+<script>
+
+  const app = Vue.createApp({
+
+    methods: {
+      btnSwitch () {
+        this.showItem = (this.showItem === 'my-img-view' ? 'my-img-view2' : 'my-img-view')
+      }
+    }
+    ,
+  })
+
+  // /*异步组件*/
+  // app.component('async-view',Vue.__warnedDefineAsync
+  //
+  // )
+  app.component('async-view', Vue.defineAsyncComponent(() => {
+    return new Promise((resolve, reject) => {
+      //耗时模拟
+      setTimeout(() => {
+        resolve({
+          template: `<div>这是一个异步组件</div>`
+        })
+      }, 1000)
+    })
+
+  }))
+
+  app.mount('#div_01')
+</script>
+
+
+</body>
+</html>
+

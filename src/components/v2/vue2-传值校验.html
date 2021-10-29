@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue2-传值校验</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue00.css" rel="stylesheet">
+    <!--    <script type="text/javascript" src="vue01.js"></script>-->
+</head>
+<body>
+
+<div id="div_01" class="div01">
+    {{ myText }}
+
+    <br>
+    <my-input-view name="静态view123"></my-input-view>
+    <br>
+    <my-input-view :name="this.name"></my-input-view>
+    <br>
+
+    <my-input-view></my-input-view>
+    <br>
+    <!--Non-prop 就是默认所有属性都移植给子组件-->
+    <!--$attrs全部失效-->
+    <!--$attrs.style style失效-->
+
+
+</div>
+
+
+<script>
+
+  const app = Vue.createApp({
+    data () {
+      return {
+        myText: 'this is my text p1',
+        name: '动态view2',
+        desc: '动态全局组件2',
+      }
+    }
+    ,
+    methods: {
+      appmethod () {
+        alert('这是app 的方法')
+      }
+    }
+    ,
+  })
+
+  /*注册全局自定义组件*/
+  app.component('my-input-view',
+    {
+      /*自动定义属性传值*/
+      props: {
+        name: {
+          type: String,
+          require: true,
+          default: '默认值123',
+          /*校验是否包含123*/
+          validator: function (value) {
+            console.log(value.search('123'))
+            return value.search('123') != -1
+          }
+
+        }
+      },
+
+      methods: {
+        tips () {
+          alert('已经离开')
+        }
+      },
+      template: '<input class="t2" style="color: #42b983;font-size: 25px" @mouseleave="tips">{{name}}'
+    }
+  )
+  app.mount('#div_01')
+</script>
+
+
+</body>
+</html>
+

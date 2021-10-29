@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义组件 以及传值</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue00.css" rel="stylesheet">
+    <!--    <script type="text/javascript" src="vue01.js"></script>-->
+</head>
+<body>
+
+<div id="div_01" class="div01">
+    {{ myText }}
+    <br>
+    <!--  静态父向子传值  -->
+    <my-view name="静态view1" desc="静态全局组件1"></my-view>
+    <!--    动态传值-->
+    <my-view :name="this.name" :desc="this.desc"></my-view>
+    <!--    参数是函数时的用法-->
+    <my-methods-view :pmethod="appmethod"></my-methods-view>
+    <my-local-view></my-local-view>
+
+</div>
+
+
+<script>
+  /*局部变量命名用驼峰  使用组件命名用'-'分割*/
+  const MyLocalView = {
+    data () {
+      return {
+        msg: 1
+      }
+    },
+    template: '<p>这是局部自定义组件</p>'
+  }
+  const app = Vue.createApp({
+    data () {
+      return {
+        myText: 'this is my text p1',
+        name: '动态view2',
+        desc: '动态全局组件2',
+      }
+    }
+    ,
+    methods: {
+      appmethod () {
+        alert('这是app 的方法')
+      }
+    }
+    ,
+    /*注册局部自定义组件*/
+    components: { 'my-local-view': MyLocalView }
+  })
+
+  /*注册全局自定义组件*/
+  app.component('my-view',
+    {
+      /*自动定义属性传值*/
+      props: ['name', 'desc'],
+      template: '<div>这是全局自定义组件，名字：{{name}} 描述：{{desc}}</div>'
+    }
+  )
+
+  app.component('my-methods-view',
+    {
+      /*自动定义函数传递*/
+      /*这里驼峰 无效*/
+      props: ['pmethod'],
+      methods: {
+        myMethod () {
+          alert('自定义的方法调用了')
+          //调用传递过来 的方法
+          this.pmethod()
+        }
+      },
+      template: '<div @click="this.myMethod">点击我</div>'
+    }
+  )
+
+  app.mount('#div_01')
+</script>
+
+
+</body>
+</html>
+

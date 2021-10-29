@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue3-动态组件 状态保持</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue00.css" rel="stylesheet">
+    <!--    <script type="text/javascript" src="vue01.js"></script>-->
+</head>
+<body>
+
+<div id="div_01" class="div01">
+    <ul>
+        <!--        <component :is="showItem"/>-->
+        <!--        <li v-for="img in imgUrls">-->
+        <!--        <my-img-view v-show="showItem==='imga'"></my-img-view>-->
+        <!--        <my-img-view2 v-show="showItem==='imgb'"></my-img-view2>-->
+        <!--        -->
+
+
+        <div>
+            <!--        动态组件 is-->
+            <!--        保持状态 <keep-live 标签包裹-->
+            <component :is="showItem"/>
+        </div>
+
+        <br>
+        <button class="demo t1" @click="btnSwitch">切换</button>
+        <!--        </li>-->
+    </ul>
+    <br>
+</div>
+
+
+<script>
+
+  const app = Vue.createApp({
+    data () {
+      return {
+        showItem: 'my-img-view',
+        imgUrls: ['https://newimg.jspang.com/xiedajiao01.jpg',
+          'https://newimg.jspang.com/liuying01.jpg']
+      }
+    }
+    ,
+    methods: {
+      btnSwitch () {
+        this.showItem = (this.showItem === 'my-img-view' ? 'my-img-view2' : 'my-img-view')
+      }
+    }
+    ,
+  })
+
+  /*注册全局自定义组件*/
+  app.component('my-img-view',
+    {
+      template: '<img class="demo"  src="https://newimg.jspang.com/xiedajiao01.jpg">'
+    }
+  )
+  app.component('my-img-view2',
+    {
+      template: '<img class="demo"  src="https://newimg.jspang.com/liuying01.jpg">'
+    }
+  )
+  app.mount('#div_01')
+</script>
+
+
+</body>
+</html>
+

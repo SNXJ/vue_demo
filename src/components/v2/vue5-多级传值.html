@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue5-多级传值provide与inject</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link type="text/css" href="vue00.css" rel="stylesheet">
+    <!--    <script type="text/javascript" src="vue01.js"></script>-->
+</head>
+<body>
+
+<div id="div_01" class="div01">
+    <ul>
+        <root-view></root-view>
+    </ul>
+    <br>
+</div>
+
+
+<script>
+
+  const app = Vue.createApp({})
+
+  app.component('root-view', {
+      data () {
+        return {
+          name: 'xx传递的值xx'
+        }
+      },
+      provide: {
+        desc: 'xxxx'
+      },
+      template: '<div>根结点 {{name}}</div><br> <child-view>{{name}}</child-view> '
+    }
+  )
+  app.component('child-view', {
+      template: '<div>子结点<slot></slot></div> <br> <child-child-view></child-child-view>'
+    }
+  )
+  app.component('child-child-view', {
+      inject: ['desc'],
+      template: '<div>这是子子结点{{desc}}<slot></slot></div>'
+    }
+  )
+
+  app.mount('#div_01')
+</script>
+
+
+</body>
+</html>
+
