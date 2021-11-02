@@ -1,12 +1,25 @@
+<!--<script language="ts">-->
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+// import MyV1 from "./components/v1/MyV1.vue";
+import MyVue from "./components/v1/MyV5.vue";
+
+// import modal from "/src/components/Modal.vue";
+// import {onMounted} from "vue";
+// const my = {
+//   name: "my",
+//   components: {
+//     modal,
+//   },
+//
+// };
+// export default my;
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+<!--  <modal></modal>-->
+  <!--  <img alt="Vue logo" src="./assets/logo.png" />-->
+  <!--  <MyV1 msg="Hello Vue 3 + Vite" />-->
+  <MyVue msg="Hello Vue 3 + Vite"/>
 </template>
 
 <style>
