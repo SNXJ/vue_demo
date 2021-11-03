@@ -31,9 +31,10 @@ const count = ref(0)
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+  <svg-icon icon-class="bug"></svg-icon>
 </template>
 
-<style scoped>
+<style lang="scss" scoped >
 a {
   color: #42b983;
 }
