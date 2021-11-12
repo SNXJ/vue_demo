@@ -5,10 +5,12 @@ import HelloWorld from './components/HelloWorld.vue'
 
 import {computed, defineComponent} from 'vue'
 import {useStore} from './store'
+import Header from "./components/Header.vue";
 
 export default defineComponent({
   name: 'App',
   components: {
+    Header,
     HelloWorld
   },
   setup() {
@@ -39,25 +41,52 @@ export default defineComponent({
 <template>
   <!--  <img alt="Vue logo" src="./assets/logo.png"/>-->
   <!--  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />-->
-  <svg-icon icon-class="bug"></svg-icon>
-  <br>
-  <button @click="addCount">count is: {{ count }}</button>
-  <br>
-  <el-button type="primary" icon="el-icon-search">搜索</el-button>
-  <br>
+  <Header/>
+  <!--  路由页面渲染在这里-->
+  <div class="main">
+    <router-view/>
+  </div>
 
+  <!--  <svg-icon icon-class="bug"></svg-icon>-->
+  <!--  <br>-->
 
-
+  <!--  <button @click="addCount">count is: {{ count }}</button>-->
+  <!--  <br>-->
+  <!--  <el-button type="primary" icon="el-icon-search">搜索</el-button>-->
+  <!--  <br>-->
 
 </template>
 
-<style>
+<style lang="scss">
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
+
+.main {
+  flex: 1;
+  padding: 12px 20px;
+}
+
+/*#app {*/
+/*  font-family: Avenir, Helvetica, Arial, sans-serif;*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+/*  text-align: center;*/
+/*  color: #2c3e50;*/
+/*  margin-top: 10px;*/
+/*}*/
 </style>

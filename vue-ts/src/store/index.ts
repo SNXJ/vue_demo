@@ -1,6 +1,7 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
 import type { App } from 'vue'
+import {RootState, UserState} from "../types/store";
 
 // InjectionKey 将store安装到Vue应用程序时提供类型,将类型传递InjectionKey给useStore方法
 // 手动声明 state 类型
@@ -14,13 +15,22 @@ const key: InjectionKey<Store<State>> = Symbol()
 const store = createStore<State>({
     state() {
         return {
-            count: 0
+            count: 0,
+            userInfo: {
+                user: '',
+                password: '',
+            },
+            // todoList: [] as Array<TodoItem>,
+            // todoListMap: {},
         }
     },
     mutations: {
         increment(state: State) {
             state.count++
-        }
+        },
+        updateUserInfo(state: RootState, payload: UserState) {
+            state.userInfo = payload;
+        },
     }
 })
 
