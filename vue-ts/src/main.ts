@@ -7,7 +7,7 @@ import { setupElement } from './libs/element'
 import ElementPlus from "element-plus";
 // import 'element-plus/lib/theme-chalk/index.css'
 import zhCn from "element-plus/lib/locale/lang/zh-cn";
-import './style/index.less';
+// import './style/index.less';
 
 // createApp(App).mount('#app')
 const app = createApp(App)

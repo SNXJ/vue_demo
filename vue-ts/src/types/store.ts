@@ -4,8 +4,16 @@ export interface UserState {
     password: string;
 }
 
-export interface RootState {
-    userInfo: UserState;
-    // todoList: Array<TodoItem>;
-    // todoListMap: object;
+export interface ItemState {
+    text: string;
+    key: string;
+    time: string;
 }
+
+export interface RootState {
+    count: number
+    userInfo: UserState;
+    todoList: Array<ItemState>;
+    todoListMap: object;
+}
+
