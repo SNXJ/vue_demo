@@ -70,7 +70,8 @@ export default defineComponent({
   data: () => ({
     navs: [
       {name: '首页', path: '/'},
-      {name: '关于', path: '/about'},
+      {name: '应用', path: '/apps'},
+      {name: '关于', path: '/about/{}'},
     ],
     // 是否显示注册弹窗
     visible: false,
@@ -111,6 +112,7 @@ export default defineComponent({
 .header {
   display: flex;
   align-items: center;
+  width: 100%;
   background: #2c3e50;
 
   .logo,
@@ -123,22 +125,32 @@ export default defineComponent({
 
   .nav-wrapper {
     flex: 1;
+    width: 100%;
   }
 
   .nav {
     display: inline-block;
     padding: 0 8px;
+    overflow: auto;
     color: white;
+    /*下划线样式*/
+    text-decoration: none;
     transition: all 300ms;
 
     &:hover {
-      background: red;
+
+      background-color: #4CAF50;
+      color: white;
     }
 
     &-button {
+      position: absolute;
+      width: 80px;
+      right: 0px;
       border-color: transparent;
       padding: 8px 16px;
       color: #42b983;
+      flex: 3;
       margin-right: 16px;
 
       &:hover {
@@ -148,6 +160,8 @@ export default defineComponent({
     }
 
     &-user {
+      position: absolute;
+      right: 0px;
       padding: 8px 16px;
       color: white;
       font-weight: 300;

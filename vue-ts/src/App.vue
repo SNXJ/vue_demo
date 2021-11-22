@@ -6,10 +6,14 @@ import HelloWorld from './components/HelloWorld.vue'
 import {computed, defineComponent} from 'vue'
 import {useStore} from './store'
 import Header from "./components/Header.vue";
+import LeftNav from "./components/LeftNav.vue";
+import NavView from "./components/NavView.vue";
 
 export default defineComponent({
   name: 'App',
   components: {
+    NavView,
+    LeftNav,
     Header,
     HelloWorld
   },
@@ -41,10 +45,17 @@ export default defineComponent({
 <template>
   <!--  <img alt="Vue logo" src="./assets/logo.png"/>-->
   <!--  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />-->
+  <!--  <Header/>-->
   <Header/>
   <!--  路由页面渲染在这里-->
   <div class="main">
-    <router-view/>
+    <div class="nav-left">
+      <LeftNav/>
+    </div>
+    <div class="content-right">
+      <router-view/>
+    </div>
+
   </div>
 
   <!--  <svg-icon icon-class="bug"></svg-icon>-->
@@ -58,6 +69,23 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.nav-left {
+  width: 100px;
+}
+
+.content-right {
+  width: 75%;
+  background-color: #8d8f92;
+}
+
+
 html, body {
   margin: 0;
   padding: 0;
@@ -76,17 +104,35 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.main {
-  flex: 1;
-  padding: 12px 20px;
-}
 
-/*#app {*/
-/*  font-family: Avenir, Helvetica, Arial, sans-serif;*/
-/*  -webkit-font-smoothing: antialiased;*/
-/*  -moz-osx-font-smoothing: grayscale;*/
-/*  text-align: center;*/
-/*  color: #2c3e50;*/
-/*  margin-top: 10px;*/
-/*}*/
+
+
+///*网格布局*/
+//.contain {
+//  display: grid;
+//  grid:
+//      'header header header header header'
+//      'left content content content content'
+//      'left content content content content'
+//      'left content content content content'
+//      'header';
+//
+//}
+//
+//.header {
+//  grid-area: header;
+//}
+//
+//.left {
+//  grid-area: left;
+//}
+//
+//.content {
+//  grid-area: content;
+//}
+//
+//.footer {
+//  grid-area: footer;
+//}
+
 </style>

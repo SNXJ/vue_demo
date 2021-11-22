@@ -107,6 +107,8 @@ export default ({
 }
 
 .ul {
+  /*移除标记*/
+  list-style-type: none;
   color: #42b983;
 }
 
@@ -119,9 +121,11 @@ export default ({
 }
 
 .input {
+  border-style: solid;
+  border-color: #42b983;
+  border-width: 2px;
   border-radius: 6px;
   text-align: center;
-  margin-top: 20px;
   height: 30px;
   width: 200px;
 }

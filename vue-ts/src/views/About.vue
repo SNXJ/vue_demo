@@ -16,6 +16,7 @@ import {useRoute} from 'vue-router';
 import {useStore} from '../store'
 import router from "../router";
 import {ItemState} from "../types/store";
+import {isEmpty} from "element-plus/es/utils/util";
 
 export default defineComponent({
   name: "About",
@@ -23,8 +24,13 @@ export default defineComponent({
     const route = useRoute()
     const store = useStore()
     const {item} = route.params;
+    console.log('=====params=item=='+item)
     //JSON.parse()
     //JSON.stringify() 否则传递的参数是【object,object】
+    if (item == "{}") {
+      console.log('=====params=空==')
+      return
+    }
     const detail = JSON.parse(item)
 
     //state传递不成功
