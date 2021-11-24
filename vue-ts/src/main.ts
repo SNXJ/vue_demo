@@ -1,7 +1,7 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 import {setupStore} from './store'
-import router, { setupRouter } from './router' // 路由
+import router, {setupRouter} from './router' // 路由
 import SvgIcon from './components/SvgIcon/index.vue'
 // import { setupElement } from './libs/element'
 
@@ -17,8 +17,10 @@ setupStore(app)
 setupRouter(app)
 // setupElement(app)
 app.use(ElementPlus, {
-    locale: zhCn,
-})
+        locale: zhCn
+    },
+    {size: 'small', zIndex: 3000}
+)
 // app.mount('#app')
 router.isReady().then(() => {
     app.mount('#app')

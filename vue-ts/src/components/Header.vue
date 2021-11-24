@@ -10,6 +10,8 @@
       >{{ item.name }}
       </router-link>
 
+      <el-button type="primary" :icon="Edit"></el-button>
+
       <span class="nav-user">
       <span
           v-if="userInfo.user"
@@ -56,7 +58,6 @@
 </template>
 
 <script lang="ts">
-
 import {defineComponent} from 'vue';
 
 import {mapState, mapMutations} from 'vuex';
