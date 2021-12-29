@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Document</title>
+    <script>
+        function search() {
+            console.log("搜索....")
+            var xhr;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xhr = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            // xhr.onreadystatechange = function() {
+            //     if (xhr.readyState == 4 && xhr.status == 200) {
+            //         console.log("====响应===" + xhr.responseText);
+            //     }
+            // }
+            xhr.onload = function() {
+                // 输出接收到的文字数据
+                console.log("====onload===" + xhr.responseText);
+            }
+
+            xhr.onerror = function() {
+                console.log("====onerror===" + xhr.responseText);
+            }
+            xhr.open("GET", "http://localhost:8080/app/", true);
+            xhr.send();
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <input type="text" placeholder="搜索内容" />
+            <button onclick="search()">搜索</button>
+        </div>
+    </header>
+    <div class="grid-warp">
+        <ul>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+            <li>
+                <a href="#"><img src="pic/ic_goods.webp" alt="" /></a>
+                <span>名字</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="banner">
+        <div class="banner-left"></div>
+
+        <div class="banner-right">
+            <div class="banner-right-01"></div>
+            <div class="banner-right-02"></div>
+        </div>
+    </div>
+
+    <div class="ad">
+        <img src="pic/free_banner.webp" alt="" />
+    </div>
+
+    <div class="bottom">
+        <ul>
+            <li>
+                <button><img src="images/close.png" alt="" /> 联系客服</button>
+            </li>
+            <li>
+                <button><img src="images/close.png" alt="" />下载按钮</button>
+            </li>
+            <li>
+                <button><img src="images/close.png" alt="" />加入我们</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="nav">
+        <ul>
+            <li><img src="images/ic_home.png" alt=""></li>
+            <li><img src="images/ic_cate.png" alt=""></li>
+            <li><img src="images/ic_gwc.png" alt=""></li>
+            <li><img src="images/ic_mine.png" alt=""></li>
+        </ul>
+
+    </div>
+</body>
+
+</html>

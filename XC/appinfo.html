@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Document</title>
+    <script>
+        function search() {
+            console.log("查询....")
+            doNet('http://localhost:8080/app/')
+        }
+
+        function add() {
+            console.log("添加....")
+            doNet('http://localhost:8080/app/add/')
+        }
+
+        function edit() {
+            console.log("修改....")
+            doNet('http://localhost:8080/app/edit/')
+        }
+
+        function del() {
+            console.log("删除....")
+            doNet('http://localhost:8080/app/del/')
+        }
+
+        function delLiChild() {
+            var ul = document.querySelector(".app_ul")
+            while (ul.hasChildNodes()) {
+                ul.removeChild(ul.firstChild)
+            }
+            return ul
+        }
+
+        function doNet(url) {
+            var xhr;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xhr = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhr.onload = function() {
+                // 输出接收到的文字数据
+                // console.log("====onload===" + xhr.responseText);
+                var ul = delLiChild()
+                var appinfo = JSON.parse(xhr.responseText)
+                    // document.querySelector(".info").innerHTML = JSON.stringify(appinfo.data.info, '', "\t");
+                appinfo.data.info.forEach(element => {
+                    var li = document.createElement("li");
+                    li.innerHTML = `<li style="padding:10px;border:1px solid">
+                        <p>ID：${element.id}</p>
+                        <p>名字：${element.name}</p>
+                        <p>公司：${element.company}</p>
+                        </li>
+            
+                        </br>`
+                    ul.appendChild(li)
+
+                });
+
+            }
+            xhr.onerror = function() {
+                alert("请检查网络")
+                console.log("====onerror===" + xhr.responseText);
+            }
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <input type="text" placeholder="请输入搜索内容" />
+            </br>
+            <div class="action">
+                <button onclick="search()" style="min-width: 60px;">查询</button>
+                <button onclick="add()" style="min-width: 60px;">添加</button>
+                <button onclick="del()" style="min-width: 60px;">删除</button>
+            </div>
+        </div>
+    </header>
+    <div class="info">
+        <ul class="app_ul" id="app_ul">
+            <li>app信息</li>
+        </ul>
+
+    </div>
+
+</body>
+
+</html>

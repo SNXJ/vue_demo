@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Access-Control-Allow-Origin" content="https://ofake.oss-cn-shanghai.aliyuncs.com/">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        var mUrl = "https://ofake.oss-cn-shanghai.aliyuncs.com/fkback/test.txt?jsoncallback=?"
+        $(document).ready(function() {
+            $("button").click(function() {
+                // console.log("log========>>>get")
+                // $.get("https://ofake.oss-cn-shanghai.aliyuncs.com/fkback/test.txt?jsoncallback=?",
+                //     function(data, status) {
+                //         alert("数据: \n" + data + "\n状态: " + status);
+                //     });
+
+                console.log("log======555==>>>get===" + mUrl)
+                    // $.ajax({
+                    //     url: mUrl,
+                    //     dataType: "jsoup",
+                    //     processData: false,
+                    //     type: "get",
+                    //     success: function(data) {
+                    //         alert("外部内容加载成功!" + data);
+                    //     },
+                    //     error: function(httpReq, statustxt, errTh) {
+                    //         alert("错误!" + httpReq + '======' + statustxt + '====' + errTh);
+                    //     }
+                    // });
+                $("p").load(mUrl, function(responseTxt, statusTxt, xhr) {
+                    if (statusTxt == "success")
+                        alert("外部内容加载成功!");
+                    if (statusTxt == "error")
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                });
+
+
+                // $("p").load(mUrl, function(data) {
+                //     alert("外部内容加载成功!" + data);
+                // });
+
+
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <button>获取</button>
+    <p>显示内容</p>
+
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/appinfo.css" />
+    <title>Document</title>
+    <script>
+        var base_url = "http://localhost:8080/"
+        var tempJson = `{
+	"error": "200",
+	"msg": "success",
+	"data": {
+		"info": [
+			{
+				"id": "0",
+				"name": "app名字0",
+				"version": "v001",
+				"company": "公司信息",
+				"desc": "信息描述.....",
+				"remark": "其他信息.....",
+				"create_time": "2021-12-17 09:30:08",
+				"update_time": "2021-12-17 09:30:08"
+			}
+		]
+	}
+}`
+
+        function onEnter() {
+            //回车执行查询
+            if (event.keyCode == "13") {
+                search()
+            }
+        }
+
+        function getInputText() {
+            var searchValue = document.querySelector(".input-search").value
+            console.log(`输入内容：${searchValue}`);
+            if (searchValue == '' || searchValue == undefined || searchValue == null) {
+                alert('请输入查询的内容')
+                return null
+            }
+            return searchValue
+        }
+
+        function getTextByName(className) {
+            var iValue = document.querySelector(`${className}`).value
+            console.log(`输入内容：${iValue}`);
+            if (iValue == '' || iValue == undefined || iValue == null) {
+                // alert('内容不可为空')
+                return null
+            }
+            return iValue
+        }
+
+        function search() {
+            console.log("查询....")
+            var str = getInputText()
+            if (str == null) {
+                return
+            }
+            doNet(`${base_url}app/search/?search=${str}`)
+        }
+
+        function getAddText() {
+            var name = getTextByName(".input-01")
+            var company = getTextByName(".input-02")
+            var desc = getTextByName(".input-03")
+            var remake = getTextByName(".input-04")
+            if (null == name || null == company || null == desc || null == remake) {
+                alert("全部必填")
+            }
+            console.log(`==${name}====${company}=${desc}=${remake}==`)
+            var params = {
+                "id": "0",
+                "name": name,
+                "version": "v001",
+                "company": company,
+                "desc": desc,
+                "remark": remake,
+                "create_time": "2021-12-17 09:30:08",
+                "update_time": new Date().toLocaleString()
+            }
+            doAddPost(params)
+        }
+
+        function doAddPost(params) {
+            doNetPOST(`${base_url}app/postadd/`, params)
+            var dialog = document.querySelector(".dialog")
+            dialog.style.display = "none"
+        }
+
+        function addDialog() {
+            console.log("显示....")
+            var dialog = document.querySelector(".dialog")
+            dialog.style.display = "block"
+                // dialog.display = "block"
+        }
+        // 在用户点击其他地方时，关闭弹窗
+        window.onclick = function(event) {
+            console.log("关闭....")
+            var dialog = document.querySelector(".dialog")
+            if (event.target == dialog) {
+                dialog.style.display = "none";
+            }
+        }
+
+        function add() {
+            console.log("添加....")
+            doNet(`${base_url}app/add/`)
+        }
+
+        function edit() {
+            console.log("修改....")
+            doNet(`${base_url}app/edit/`)
+        }
+
+        function del() {
+            console.log("删除....")
+            doNet(`${base_url}app/del/`)
+        }
+
+        function delLiChild() {
+            var ul = document.querySelector(".app_ul")
+            while (ul.hasChildNodes()) {
+                ul.removeChild(ul.firstChild)
+            }
+            return ul
+        }
+
+        function addLiChild(element) {
+            var li = document.createElement("li");
+            li.innerHTML = `<li style="padding:10px;border:1px solid;">
+                        <p>ID：${element.id}</p>
+                        <p>名字：${element.name}</p>
+                        <p>公司：${element.company}</p>
+                        <p>时间：${element.update_time}</p>
+                        </li>
+                        </br>`
+            return li
+        }
+
+        function doNet(url) {
+            var xhr;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xhr = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhr.onload = function() {
+                // 输出接收到的文字数据
+                // console.log("====onload===" + xhr.responseText);
+                var ul = delLiChild()
+                var appinfo = JSON.parse(xhr.responseText)
+                    // document.querySelector(".info").innerHTML = JSON.stringify(appinfo.data.info, '', "\t");
+                appinfo.data.info.forEach(element => {
+                    // 添加到li 显示
+                    var addLi = addLiChild(element)
+                    ul.appendChild(addLi)
+
+                });
+
+            }
+            xhr.onerror = function() {
+                alert("请检查网络")
+                console.log("====onerror===" + xhr.responseText);
+            }
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+
+        function doNetPOST(url, params) {
+            var xhr;
+            if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+            } else { // IE6, IE5 浏览器执行代码
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xhr.onload = function() {
+                var ul = delLiChild()
+                var appinfo = JSON.parse(xhr.responseText) // document.querySelector(".info").innerHTML = JSON.stringify(appinfo.data.info, '', "\t");
+                appinfo.data.info.forEach(element => {
+                    // 添加到li 显示
+                    var addLi = addLiChild(element)
+                    ul.appendChild(addLi)
+
+                });
+
+            }
+            xhr.onerror = function() {
+                alert("请检查网络")
+                console.log("====onerror===" + xhr.responseText);
+            }
+
+
+            xhr.open("POST", url, true);
+
+            // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            // xhr.send("info=testinfo");
+            // xhr.send(`info=${tempJson}`);
+
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(params));
+        }
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="dialog">
+            <div class="dialog-content">
+                <div class="dialog-title">添加</div>
+                名字： <input class="input-01" type="text" placeholder="请输入APP名字" /> </br>
+                公司： <input class="input-02" type="text" placeholder="请输入APP公司" /> </br>
+                描述： <input class="input-03" type="text" placeholder="请输入简单内容" /> </br>
+                备注： <input class="input-04" type="text" placeholder="请输入其他标注" /></br>
+                <button class="dialog-add" onclick="getAddText()">确定</button>
+            </div>
+        </div>
+
+        <div class="search">
+            <input class="input-search" onkeydown="onEnter()" type="text" placeholder="请输入搜索内容" />
+        </div>
+        <div class="search-action">
+            <button onclick="search()">搜索</button>
+            <button onclick="addDialog()">添加</button>
+            <button onclick="del()">删除</button>
+            <button>编辑</button>
+        </div>
+        <p style="margin: 5px 15px;">app信息</p>
+        <div class="info">
+            <ul class="app_ul" id="app_ul">
+            </ul>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+{
+    "error": "200",
+    "msg": "success",
+    "data": {
+        "token": "a268630eca7460b712355c6af0e76460",
+        "mobile_model": "本软件完美支持vivo X27手机",
+        "csj": 2,
+        "userInfo": {
+            "id": 5662073,
+            "create_time": "1639038678",
+            "mobile": "",
+            "feature": ""
+        },
+        "user": {
+            "create_time": "1639038678",
+            "channel_group_id": "",
+            "channel_group_name": ""
+        }
+    }
+}

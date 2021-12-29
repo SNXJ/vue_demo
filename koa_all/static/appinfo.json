@@ -1,0 +1,18 @@
+{
+	"error": "200",
+	"msg": "success",
+	"data": {
+		"info": [
+			{
+				"id": "0",
+				"name": "134",
+				"version": "v001",
+				"company": "245",
+				"desc": "345",
+				"remark": "456",
+				"create_time": "2021-12-17 09:30:08",
+				"update_time": "2021/12/29 下午5:01:09"
+			}
+		]
+	}
+}
